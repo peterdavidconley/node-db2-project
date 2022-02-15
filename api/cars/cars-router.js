@@ -32,7 +32,9 @@ router.post('/', (req, res) => {
 
     Car.create(req.body)
     .then(car => {
-        res.status(201).json(car)
+
+          res.status(201).json(car)
+        
     })
     .catch(err => {
         res.json(err)
