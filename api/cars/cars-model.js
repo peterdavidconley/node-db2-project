@@ -1,6 +1,6 @@
 const db = require('../../data/db-config');
 
-const getAll = () => {
+async function getAll () {
   return db('cars')
 }
 

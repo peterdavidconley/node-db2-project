@@ -14,7 +14,7 @@ In this challenge, you will write an API that can be used to manage _Cars_ store
 
 Build a RESTful API for an "cars" resource. The client for this API is a car dealer.
 
-#### Cars Schema
+[X] #### Cars Schema
 
 The critical information for each car is the vin, make, model, and mileage. They also track transmission type (manual, automatic...) and status of the title (clean, salvage...), but this information is not always immediately known. Write the "up" and "down" functions inside the `data/migrations/01-make_cars_table.js` migration file to satisfy the following schema:
 
@@ -28,7 +28,7 @@ The critical information for each car is the vin, make, model, and mileage. They
 | title        | string           | optional                                            |
 | transmission | string           | optional                                            |
 
-#### Write Model Functions
+[X] #### Write Model Functions
 
 - Write the following db access functions inside `api/cars/cars-model.js` using Knex:
 
@@ -48,7 +48,7 @@ The critical information for each car is the vin, make, model, and mileage. They
 
   - `checkVinNumberUnique` returns a status 400 with a `{ message: "vin <vin number> already exists" }` if the vin number already exists in the database.
 
-### Write a Cars API
+[X] ### Write a Cars API
 
 - Write CR (of CRUD) for the `cars` resource, using the middleware and model functions described above wherever appropriate inside `api/cars/cars-router.js` :
 
