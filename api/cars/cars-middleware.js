@@ -1,4 +1,5 @@
-const Car = require('./cars-model')
+const Car = require('./cars-model');
+const vin = require('vin-validator');
 
 const checkCarId = async (req, res, next) => {
   
@@ -22,33 +23,41 @@ const checkCarId = async (req, res, next) => {
 
 const checkCarPayload = (req, res, next) => {
 
-  const error = { status: 400 }
-  if (vin === undefined) {
-      error.message = "vin is missing"
-  } else if (make === undefined) {
-      error.message = "make is missing"
-  } else if (model === undefined) {
-    error.message = "model is missing"
-  } else if (mileage === undefined) {
-    error.message = "mileage is missing"
-  } 
-  if (error.message) {
-    next(error)
-  } else {
-    next()
-  }
+  if (!req.body.vin) return next({
+      status: 400,
+      message: 'vin is missing'
+  }) 
+  if (!req.body.make) return next({
+      status: 400,
+      message: 'make is missing'
+  }) 
+  if (!req.body.model) return next({
+    status: 400,
+    message: 'model is missing'
+  }) 
+  if (!req.body.mileage) return next({
+    status: 400,
+    message: 'mileage is missing'
+  }) 
+  next()
+
 }
 
 const checkVinNumberValid = (req, res, next) => {
 
-
-
+  if (vin.validate(req.body.vin)) {
+    next()
+  } else {
+    next({ 
+      status: 400, 
+      message: `vin ${req.body.vin} is invalid`,
+    })
+  }
 }
 
 const checkVinNumberUnique = (req, res, next) => {
 
-
-
+    next()
 }
 
 module.exports = {

@@ -28,7 +28,7 @@ router.get('/:id', mw.checkCarId, (req, res) => {
 
 //`[POST] /api/cars` returns the created car.
 
-router.post('/', (req, res) => {
+router.post('/', mw.checkCarPayload, mw.checkVinNumberUnique, mw.checkVinNumberValid, async (req, res, next) => {
 
     Car.create(req.body)
     .then(car => {
