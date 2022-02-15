@@ -8,7 +8,7 @@ In this challenge, you will write an API that can be used to manage _Cars_ store
 
 ### Task 1: Project Setup and Submission
 
-[X] Your assignment page on Canvas should contain instructions for submitting this project. If you are still unsure, reach out to School Staff.
+[x] Your assignment page on Canvas should contain instructions for submitting this project. If you are still unsure, reach out to School Staff.
 
 ### Task 2: Minimum Viable Product
 
