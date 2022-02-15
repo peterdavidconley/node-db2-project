@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Car = require('./cars-model');
+const mw = require('./cars-middleware');
 
 //`[GET] /api/cars` returns an array of cars sorted by id (or an empty array if there aren't any).
 
@@ -19,17 +20,9 @@ router.get('/', (req, res) => {
 
 //`[GET] /api/cars/:id` returns a car by the given id.
 
-router.get('/:id', (req, res) => {
+router.get('/:id', mw.checkCarId, (req, res) => {
 
-    Car.getById(req.params.id)
-    .then(car => {
-        res.json(car)
-    })
-    .catch(err => {
-        res.status(500).json({
-            message: 'Request failed.'
-        })
-    })
+    res.json(req.car);
 
 })
 
