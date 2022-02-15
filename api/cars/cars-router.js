@@ -28,17 +28,20 @@ router.get('/:id', mw.checkCarId, (req, res) => {
 
 //`[POST] /api/cars` returns the created car.
 
-router.post('/', mw.checkCarPayload, mw.checkVinNumberUnique, mw.checkVinNumberValid, async (req, res, next) => {
+router.post(
+    '/', 
+    mw.checkCarPayload,
+    mw.checkVinNumberUnique, 
+    mw.checkVinNumberValid, 
+    async (req, res, next) => {
 
-    Car.create(req.body)
-    .then(car => {
+    try {
+        const newCar = await Car.create(req.body)
+        res.json(newCar)
+    } catch (err) {
+        next(err)
+    }
 
-          res.status(201).json(car)
-        
-    })
-    .catch(err => {
-        res.json(err)
-    })
 })
 
 module.exports = router;
